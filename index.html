@@ -35,7 +35,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -44,8 +44,6 @@
   <script src="./static/js/index.js"></script>
   
 </head>
-
-
 <body>
 
 
@@ -59,7 +57,7 @@
             <h1 class="title is-1 publication-title">An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://thu-wyz.github.io/">Yangzhen Wu</a><sup>1,2</sup>,
+                <a href="https://thu-wyz.github.io/">Yangzhen Wu</a><sup>1</sup>,
               </span>
               <span class="author-block">
                 <a href="https://www.cs.cmu.edu/~zhiqings/">Zhiqing Sun</a><sup>2</sup>,
@@ -166,11 +164,13 @@ These results highlight the potential benefits of deploying smaller models equip
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3">Inference Time Scaling</h2>
-          <img src="./static/images/scaling.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
-          <br />
-          The inference computation scaling laws of Pythia models exhibited in error rate on th GSM8K test set.
-          We evaluate Pythia model using various sizes and various numbers of sampled solutions for majority voting. The <em>left</em> panel shows the error rate for each model size decreases steadily when the computation increases and converges at the end. The <em>right</em> panel shows the model performances given inference FLOPs budgets. 
-          In particular, the three stars highlight the optimal model size under \(10^{12}\), \(10^{13}\), and \(10^{14}\) FLOPs, indicating that the optimal model size can vary given different budgets.
+          <figure style="text-align: left;">
+            <img src="./static/images/scaling.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+            <figcaption> The inference computation scaling laws of Pythia models exhibited in error rate on th GSM8K test set.
+              We evaluate Pythia model using various sizes and various numbers of sampled solutions for majority voting. The <em>left</em> panel shows the error rate for each model size decreases steadily when the computation increases and converges at the end. The <em>right</em> panel shows the model performances given inference FLOPs budgets. 
+              In particular, the three stars highlight the optimal model size under \(10^{12}\), \(10^{13}\), and \(10^{14}\) FLOPs, indicating that the optimal model size can vary given different budgets.</figcaption>
+          </figure>
+         
         </div>
       </div>
       <!--/ Scaling Law. -->
@@ -184,11 +184,15 @@ These results highlight the potential benefits of deploying smaller models equip
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3">Overview of Reward Balanced Search (ReBaSe)</h2>
+          <figure style="text-align: left;">
           <img src="./static/images/rebase_method.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
           <br />
+          <figcaption>
           The Reward Balanced Search method inherits the exploitation and pruning properties of tree search, while using the reward model alone to estimate the nodes' qualities without additional computation for estimating values by sampling children. 
           The efficiency is achieved by constraining the total expansion width of the tree at a certain depth. 
           REBASE balances the expansion width among the nodes at the same depth based on the rewards given by the Process Reward Model (PRM). See our paper for more information.
+        </figcaption>
+        </figure>
         </div>
       </div>
       <!--/ Overview of REBASE. -->
@@ -201,16 +205,18 @@ These results highlight the potential benefits of deploying smaller models equip
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3">REBASE Result</h2>
+          <figure style="text-align: left;">
           <img src="./static/images/llemma.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+          <figcaption>
           This figure shows the performance of different inference strategies, where x-axis represents the computation budget in flops and  y-axis denotes the test error rate on MATH dataset the REBASE method consistently outperforms the sampling method and the MCTS. REBASE also 
-          saturates later than sampling methods with a higher accuracy.
+          saturates later than sampling methods with a higher accuracy.</figcaption>
+        </figure>
         </div>
       </div>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">REBASE Table</h2>
           <img src="./static/images/rebase_table.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
-          Compared to sampling method, REBASE achieves higher accuracy with much less computation.
+          <p>Compared to sampling method, REBASE achieves higher accuracy with much less computation.</p>
         </div>
       </div>
       <!--/ Experiments. -->
@@ -224,37 +230,20 @@ These results highlight the potential benefits of deploying smaller models equip
 
 
 
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              Website template borrowed from <a
+                href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
