@@ -6,7 +6,7 @@
         content="A study on the scaling effect of the inference-time computation, investigate the compute-optimal inference method.">
   <meta name="keywords" content="Compute Optimal Inference, AI for Math, Tree Search">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models</title>
+  <title>Inference Scaling Laws: An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -54,7 +54,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models</h1>
+            <h1 class="title is-1 publication-title"><span style="color: orangered;">Inference Scaling Laws</span>: An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://thu-wyz.github.io/">Yangzhen Wu</a><sup>1</sup>,
@@ -122,13 +122,8 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              The optimal training configurations of large language models (LLMs)
-with respect to model sizes and compute budgets have been extensively studied. But how to optimally configure LLMs during inference has not been explored in sufficient depth.
-We study compute-optimal inference: designing models and inference strategies that optimally trade off additional inference-time compute for improved performance.
-As a first step towards understanding and designing compute-optimal inference methods,
-we assessed the effectiveness and computational efficiency of multiple inference strategies such as Greedy Search, Majority Voting, Best-of-N, Weighted Voting, and their variants on two different Tree Search algorithms, involving different model sizes and computational budgets.
-We found that a smaller language model with our novel tree search algorithm (Reward Balanced Search) typically achieves a Pareto-optimal trade-off.
-These results highlight the potential benefits of deploying smaller models equipped with more sophisticated decoding algorithms in end-devices to enhance problem-solving accuracy.
+              While the scaling laws of large language models (LLMs) training have been extensively studied, optimal inference configurations of LLMs remain underexplored. 
+We study <b>inference scaling laws</b> and <b>compute-optimal inference</b>, focusing on the trade-offs between model sizes and generating additional tokens with different inference strategies. As a first step towards understanding and designing compute-optimal inference methods, we studied cost-performance trade-offs for inference strategies such as greedy search, majority voting, best-of-$n$, weighted voting, and two different tree search algorithms, using different model sizes and compute budgets. Our findings indicate smaller models (e.g., Llemma-7B) can outperform larger models given the same computation budgets, and that smaller models paired with advanced inference algorithms yield Pareto-optimal cost-performance trade-offs. For instance, the Llemma-7B model, equipped with our novel tree search algorithm, consistently outperforms Llemma-34B with standard majority voting on the MATH benchmark across all FLOPs budgets. We hope these findings contribute to a broader understanding of inference scaling laws for LLMs.
             </p>
         </div>
         </div>
@@ -139,17 +134,29 @@ These results highlight the potential benefits of deploying smaller models equip
   </section>
 
 
+
+
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Scaling Law. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Inference Time Scaling</h2>
+          <h2 class="title is-3">Inference-compute Scaling</h2>
+          <p style="text-align: left; font-size: 20px;">
+            More model parameters may lead to high performance on various tasks, but what about scaling the number of decoding tokens in inference? By measuring the amount of computation in FLOPs and studying model performance across different sizes and inference strategies as computation scales up, we can gain a deeper understanding of the effect of inference scaling.
+          </p>
+          <hr style="margin: 20px 0;">
+          <figure style="text-align: left;">
+            <img src="./static/images/inference_scaling.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+            <figcaption> The error rate versus computation budget(in Flops), we evaluate the Pythia models on the GSM8k dataset accross different model sizes.
+            </figcaption>
+          </figure>
           <figure style="text-align: left;">
             <img src="./static/images/scaling.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
-            <figcaption> The inference computation scaling laws of Pythia models exhibited in error rate on th GSM8K test set.
-              We evaluate Pythia model using various sizes and various numbers of sampled solutions for majority voting. The <em>left</em> panel shows the error rate for each model size decreases steadily when the computation increases and converges at the end. The <em>right</em> panel shows the model performances given inference FLOPs budgets. 
-              In particular, the three stars highlight the optimal model size under \(10^{12}\), \(10^{13}\), and \(10^{14}\) FLOPs, indicating that the optimal model size can vary given different budgets.</figcaption>
+            <figcaption>
+              The <em>right</em> panel shows the model performances given inference FLOPs budgets. 
+              In particular, the three stars highlight the optimal model size under \(10^{12}\), \(10^{13}\), and \(10^{14}\) FLOPs, indicating that the optimal model size can vary given different budgets.
+            </figcaption>
           </figure>
          
         </div>
