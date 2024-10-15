@@ -151,13 +151,22 @@ We study <b>inference scaling laws</b> and <b>compute-optimal inference</b>, foc
             <figcaption> The error rate versus computation budget(in Flops), we evaluate the Pythia models on the GSM8k dataset accross different model sizes.
             </figcaption>
           </figure>
-          <figure style="text-align: left;">
+          <figure style="text-align: left; margin-bottom: 25px;">
             <img src="./static/images/scaling.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
             <figcaption>
               The <em>right</em> panel shows the model performances given inference FLOPs budgets. 
               In particular, the three stars highlight the optimal model size under \(10^{12}\), \(10^{13}\), and \(10^{14}\) FLOPs, indicating that the optimal model size can vary given different budgets.
             </figcaption>
           </figure>
+          <p style="text-align: left; font-size: 20px;">
+            <b>Key findings:</b>
+           <ul style="list-style-type: square; margin-top: 20px;text-align: left; font-size: 18px;">
+           <li>Scaling inference compute by sampling more solutions leads to growing task performance.</li>
+           <li>Across all scenarios, there is an eventual point at which the accuracy will reach a plateau, indicating that additional computational resources yield diminishing returns.</li>
+           <li>The ideal model size varies depending on the available computational budget. Notably, smaller models tend to perform better when the compute budget is constrained.</li>
+           <li>We also provide theoretical analysis which shows the upperbound and convergence rate in our paper, find more infomation in our paper!</li>
+         </ul>
+
          
         </div>
       </div>
@@ -168,48 +177,54 @@ We study <b>inference scaling laws</b> and <b>compute-optimal inference</b>, foc
 
   <section class="section">
     <div class="container is-max-desktop">
-      <!-- Overview of REBASE. -->
+      <!-- Compute Optimal Inference. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Overview of Reward Balanced Search (ReBaSe)</h2>
-          <figure style="text-align: left;">
-          <img src="./static/images/rebase_method.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+          <h2 class="title is-3">Compute-optimal Inference</h2>
+          <p style="text-align: left; font-size: 20px;">In our paper, we also define the problem of compute-optimal inference, investigate the inference strategies that achieve high performance with a fixed compute budget. </p>
+          <figure style="text-align: left; margin-bottom: 50px;">
+            <img src="./static/images/compute-optimal.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+            <br />
+            <figcaption>
+            comparison of compute-optimal inference and compute-optimal training
+           </figcaption>
+          </figure>
+          <figure style="text-align: left; margin-bottom: 50px;">
+          <img src="./static/images/gsm8k.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
           <br />
           <figcaption>
-          The Reward Balanced Search method inherits the exploitation and pruning properties of tree search, while using the reward model alone to estimate the nodes' qualities without additional computation for estimating values by sampling children. 
-          The efficiency is achieved by constraining the total expansion width of the tree at a certain depth. 
-          REBASE balances the expansion width among the nodes at the same depth based on the rewards given by the Process Reward Model (PRM). See our paper for more information.
-        </figcaption>
-        </figure>
+          rebase and sampling results on GSM8k
+          </figcaption>
+         </figure>
+         <p style="text-align: left; font-size: 20px;">We introduce REward BAlanced SEarch (REBASE) which is Pareto optimal compared to sampling. We have the following findings:
+         </p>
+          <ul style="list-style-type: square; margin-top: 20px;text-align: left; font-size: 18px;">
+          <li>Sophisticated inference strategy like REBASE is compute-optimal.</li>
+          <li>Smaller models equipped with advanced inference strategy outperforms larger ones.</li>
+        </ul>
         </div>
       </div>
-      <!--/ Overview of REBASE. -->
+      <!--/ Compute-opitimal Inference. -->
     </div>
   </section>
-
   <section class="section">
     <div class="container is-max-desktop">
-      <!-- Experiments. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">REBASE Result</h2>
-          <figure style="text-align: left;">
-          <img src="./static/images/llemma.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
-          <figcaption>
-          This figure shows the performance of different inference strategies, where x-axis represents the computation budget in flops and  y-axis denotes the test error rate on MATH dataset the REBASE method consistently outperforms the sampling method and the MCTS. REBASE also 
-          saturates later than sampling methods with a higher accuracy.</figcaption>
-        </figure>
-        </div>
-      </div>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <img src="./static/images/rebase_table.png" class="interpolation-image" alt="" style="display: block; margin-left: auto; margin-right: auto"/>
-          <p>Compared to sampling method, REBASE achieves higher accuracy with much less computation.</p>
-        </div>
-      </div>
-      <!--/ Experiments. -->
-    </div>
+    <h2 class="title is-3">Citation</h2>
+    <p style="text-align: left; font-size: 20px;">If you find our paper useful, please consider cite us</p>
+    <pre>
+@misc{wu2024inferencescalinglawsempirical,
+  title={Inference Scaling Laws: An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models}, 
+  author={Yangzhen Wu and Zhiqing Sun and Shanda Li and Sean Welleck and Yiming Yang},
+  year={2024},
+  eprint={2408.00724},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2408.00724}, 
+}
+    </pre>
+  </div>
   </section>
+
 
 
 
